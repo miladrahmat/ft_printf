@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/16 16:56:40 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/08 10:35:58 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putchar(char c)
+int	ft_isdigit(int c)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	if (c > 255)
+		return (0);
+	if ((unsigned char)c >= '0' && (unsigned char)c <= '9')
+		return (1);
+	else
+		return (0);
 }

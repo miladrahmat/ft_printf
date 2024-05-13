@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/18 11:50:09 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/08 10:31:36 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putchar(char c)
+int	ft_toupper(int c)
 {
-	if (!write(1, &c, 1))
+	if (c > 255)
 		return (-1);
-	return (1);
+	if ((unsigned char)c >= 97 && (unsigned char)c <= 122)
+		return (c - 32);
+	else
+		return (c);
 }

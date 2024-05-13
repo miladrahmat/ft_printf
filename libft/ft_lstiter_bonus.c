@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/05/06 13:48:01 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/06 17:31:11 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	t_list	*node;
+	t_list	*temp;
+
+	if (lst == NULL || f == NULL)
+		return ;
+	node = lst;
+	while (node != NULL)
+	{
+		temp = node->next;
+		f(node->content);
+		node = temp;
+	}
 }

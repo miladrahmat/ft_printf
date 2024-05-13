@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/29 11:44:39 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/08 10:32:15 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	unsigned int	i;
+	unsigned int	size;
+	char			*res;
+
+	if (s == NULL || f == NULL)
+		return (0);
+	i = 0;
+	size = ft_strlen((char *)s);
+	res = (char *)malloc(size * sizeof(char) + 1);
+	if (res == NULL)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		res[i] = f(i, s[i]);
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }

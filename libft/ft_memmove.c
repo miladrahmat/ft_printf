@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/17 14:22:35 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/10 10:48:01 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	size_t	i;
+
+	i = 0;
+	if (dst == NULL && src == NULL)
+		return (dst);
+	if (dst < src)
+	{
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	else
+	{
+		i = len;
+		while (i--)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+		}
+	}
+	return (dst);
 }

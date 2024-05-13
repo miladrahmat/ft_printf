@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/16 17:39:53 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/08 10:36:02 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putchar(char c)
+int	ft_isprint(int c)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	if (c > 255)
+		return (0);
+	if ((unsigned char)c >= 32 && (unsigned char)c <= 126)
+		return (1);
+	else
+		return (0);
 }

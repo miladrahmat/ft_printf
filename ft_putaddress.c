@@ -1,45 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsign.c                                     :+:      :+:    :+:   */
+/*   ft_putaddress.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 12:03:01 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 19:08:59 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/05/13 13:14:39 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/13 18:04:55 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	check_size(unsigned int n)
+int	ptr_len(size_t n)
 {
-	unsigned int	temp;
-	unsigned int	count;
+	int	len;
 
-	temp = n;
-	count = 0;
-	while (temp >= 10)
+	len = 0;
+	while (n != 0)
 	{
-		count++;
-		temp = temp / 10;
+		n = n / 16;
+		len++;
 	}
-	return (count + 1);
+	return (len);
 }
 
-int	ft_putunsign(unsigned int n)
+void	ft_putptr(uintptr_t n)
 {
-	char	res;
-	int		len;
-
-	len = check_size(n);
-	if (n >= 10)
+	if (n >= 16)
 	{
-		res = n % 10 + '0';
-		ft_putunsign(n / 10);
+		ft_putptr(n / 16);
+		ft_putptr(n % 16);
 	}
 	else
-		res = n + '0';
-	ft_putchar(res);
+	{
+		if (n <= 9)
+			ft_putchar((n % 16) + '0');
+		else
+			ft_putchar((n % 16) - 10 + 'a');
+	}
+}
+
+int	ft_putaddress(size_t ptr)
+{
+	int	len;
+
+	len = ptr_len(ptr);
+	len += ft_putstr("0x");
+	if (ptr == 0)
+		len += ft_putchar('0');
+	else
+		ft_putptr(ptr);
 	return (len);
 }

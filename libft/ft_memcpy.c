@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/17 12:37:40 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/10 10:47:52 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	size_t	i;
+
+	i = 0;
+	if (dst == NULL && src == NULL)
+		return (dst);
+	while (n > 0)
+	{
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
+		n--;
+	}
+	return (dst);
 }

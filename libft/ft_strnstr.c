@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/19 10:28:25 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/10 10:51:57 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	size_t	ni;
+	size_t	hi;
+
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	hi = 0;
+	while (len > hi && haystack[hi] != '\0')
+	{
+		ni = 0;
+		while (len > (ni + hi) && needle[ni] == haystack[hi + ni])
+		{
+			if (needle[ni + 1] == '\0')
+				return ((char *)&haystack[hi]);
+			ni++;
+		}
+		hi++;
+	}
+	return (0);
 }

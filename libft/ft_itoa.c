@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putdecimal.c                                    :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:47:56 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 16:54:58 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/04/29 09:24:38 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/08 15:42:06 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static size_t	check_size(int n)
 {
@@ -75,16 +75,4 @@ char	*ft_itoa(int n)
 		return (NULL);
 	res = converter(n, size, res);
 	return (res);
-}
-
-int	ft_putdecimal(int n)
-{
-	char	*res;
-	int		len;
-
-	len = 0;
-	res = ft_itoa(n);
-	len += ft_putstr(res);
-	free(res);
-	return (len);
 }

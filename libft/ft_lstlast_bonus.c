@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Created: 2024/05/03 14:21:27 by mrahmat-          #+#    #+#             */
+/*   Updated: 2024/05/03 14:34:36 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putchar(char c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!write(1, &c, 1))
-		return (-1);
-	return (1);
+	t_list	*last;
+
+	last = lst;
+	if (last == NULL)
+		return (NULL);
+	while (last->next != NULL)
+		last = last->next;
+	return (last);
 }
