@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:22:29 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 17:32:24 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:09:45 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putchar(char c)
 {
-	if (!write(1, &c, 1))
+	if (write(1, &c, 1) == -1)
 		return (-1);
 	return (1);
 }

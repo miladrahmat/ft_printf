@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 12:03:01 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 19:08:59 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:09:37 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ int	ft_putunsign(unsigned int n)
 	if (n >= 10)
 	{
 		res = n % 10 + '0';
-		ft_putunsign(n / 10);
+		if (ft_putunsign(n / 10) == -1)
+			return (-1);
 	}
 	else
 		res = n + '0';
-	ft_putchar(res);
+	if (ft_putchar(res) == -1)
+		return (-1);
 	return (len);
 }

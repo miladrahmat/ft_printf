@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:14:39 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 18:04:55 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:09:45 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,40 @@ int	ptr_len(size_t n)
 	return (len);
 }
 
-void	ft_putptr(uintptr_t n)
+int	ft_putptr(uintptr_t n)
 {
 	if (n >= 16)
 	{
-		ft_putptr(n / 16);
+		if (ft_putptr(n / 16) == -1)
+			return (-1);
 		ft_putptr(n % 16);
 	}
 	else
 	{
 		if (n <= 9)
-			ft_putchar((n % 16) + '0');
+			return (ft_putchar(n + '0'));
 		else
-			ft_putchar((n % 16) - 10 + 'a');
+		{
+			return (ft_putchar((n % 16) - 10 + 'a'));
+		}
 	}
+	return (0);
 }
 
 int	ft_putaddress(size_t ptr)
 {
 	int	len;
 
-	len = ptr_len(ptr);
-	len += ft_putstr("0x");
+	if (write(1, "0x", 2) == -1)
+		return (-1);
+	len = 2;
 	if (ptr == 0)
 		len += ft_putchar('0');
 	else
-		ft_putptr(ptr);
+	{
+		if (ft_putptr(ptr) == -1)
+			return (-1);
+		len += ptr_len(ptr);
+	}
 	return (len);
 }

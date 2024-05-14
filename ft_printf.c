@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:43:51 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 19:11:24 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:47:54 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,24 @@
 int	printer(const char format, va_list args)
 {
 	int				len;
-	unsigned int	num;
 
 	len = 0;
 	if (format == 'd' || format == 'i')
-		len = ft_putdecimal(va_arg(args, int));
+		len += ft_putdecimal(va_arg(args, int));
 	else if (format == 's')
-		len = ft_putstr(va_arg(args, char *));
+		len += ft_putstr(va_arg(args, char *));
 	else if (format == 'c')
-		len = ft_putchar(va_arg(args, int));
+		len += ft_putchar(va_arg(args, int));
 	else if (format == 'u')
-	{
-		num = va_arg(args, unsigned int);
-		len = ft_putunsign(num);
-	}
+		len += ft_putunsign(va_arg(args, unsigned int));
 	else if (format == 'x')
-		len = ft_printhex(va_arg(args, int), format);
+		len += ft_printhex(va_arg(args, int), format);
 	else if (format == 'X')
-		len = ft_printhex(va_arg(args, int), format);
+		len += ft_printhex(va_arg(args, int), format);
 	else if (format == 'p')
-		len = ft_putaddress(va_arg(args, size_t));
+		len += ft_putaddress(va_arg(args, size_t));
 	else if (format == '%')
-		len = ft_putchar('%');
+		len += ft_putchar('%');
 	return (len);
 }
 
@@ -53,17 +49,17 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 		{
 			str++;
-			check = printer(*str, args);
+			check = printer(*str++, args);
 			if (check == -1)
 				return (-1);
 			len += check;
 		}
 		else
 		{
-			ft_putchar(*str);
+			if (ft_putchar(*str++) == -1)
+				return (-1);
 			len++;
 		}
-		str++;
 	}
 	va_end(args);
 	return (len);
@@ -72,9 +68,9 @@ int	ft_printf(const char *str, ...)
 #include <stdio.h>
 int	main(void)
 {
-	unsigned int	nbr = -1;
+	//unsigned int	nbr = -1;
 
-	ft_printf("%u\n", nbr);
-	printf("%d\n", printf("%u\n", nbr));
+	printf("%d\n\n", ft_printf("%p\n", ""));
+	printf("%d\n", printf("%p\n", ""));
 	return (0);
 } */

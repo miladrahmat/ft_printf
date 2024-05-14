@@ -3,7 +3,7 @@ SRCS = \
 		ft_printf.c ft_printhex.c ft_putaddress.c ft_putchar.c ft_putdecimal.c \
 		ft_putstr.c ft_putunsign.c
 OBJS = $(SRCS:.c=.o)
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft
 
@@ -14,6 +14,8 @@ $(NAME): $(OBJS)
 		@cp libft/libft.a .
 		@mv libft.a $(NAME)
 		ar rcs $(NAME) $(OBJS)
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
 clean:
 	rm -f $(OBJS)
 	@make clean -C $(LIBFT)

@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:35:25 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/13 18:00:38 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:09:45 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	ft_putstr(char *s)
 	i = 0;
 	if (s == NULL)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		else
+			return (6);
 	}
-	if (*s == '\0')
-		return (0);
 	while (s[i] != '\0')
 	{
-		if (!write(1, &s[i], 1))
+		if (write(1, &s[i], 1) == -1)
 			return (-1);
 		i++;
 	}
