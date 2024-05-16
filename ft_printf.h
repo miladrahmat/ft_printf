@@ -6,7 +6,7 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:49:03 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/14 13:09:07 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:50:26 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	ft_putdecimal(int n);
 int	ft_putstr(char *s);
 int	ft_putunsign(unsigned int n);
 int	ft_printhex(unsigned int n, char format);
-int	ft_putaddress(size_t ptr);
+int	ft_putaddress(void *ptr);
 
 #endif
