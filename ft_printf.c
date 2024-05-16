@@ -6,13 +6,13 @@
 /*   By: mrahmat- <mrahmat-@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:43:51 by mrahmat-          #+#    #+#             */
-/*   Updated: 2024/05/14 11:47:54 by mrahmat-         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:53:53 by mrahmat-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	printer(const char format, va_list args)
+static int	printer(const char format, va_list args)
 {
 	int				len;
 
@@ -30,9 +30,38 @@ int	printer(const char format, va_list args)
 	else if (format == 'X')
 		len += ft_printhex(va_arg(args, int), format);
 	else if (format == 'p')
-		len += ft_putaddress(va_arg(args, size_t));
+		len += ft_putaddress(va_arg(args, void *));
 	else if (format == '%')
 		len += ft_putchar('%');
+	return (len);
+}
+
+static int	parse_str(const char *str, va_list args)
+{
+	int	len;
+	int	check;
+
+	len = 0;
+	while (*str != '\0')
+	{
+		if (*str == '%')
+		{
+			str++;
+			if (*str != '\0')
+			{
+				check = printer(*str++, args);
+				if (check == -1)
+					return (-1);
+				len += check;
+			}
+		}
+		else if (*str != '%')
+		{
+			if (ft_putchar(*str++) == -1)
+				return (-1);
+			len++;
+		}
+	}
 	return (len);
 }
 
@@ -40,27 +69,9 @@ int	ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		len;
-	int		check;
 
-	len = 0;
 	va_start(args, str);
-	while (*str != '\0')
-	{
-		if (*str == '%')
-		{
-			str++;
-			check = printer(*str++, args);
-			if (check == -1)
-				return (-1);
-			len += check;
-		}
-		else
-		{
-			if (ft_putchar(*str++) == -1)
-				return (-1);
-			len++;
-		}
-	}
+	len = parse_str(str, args);
 	va_end(args);
 	return (len);
 }
@@ -70,7 +81,7 @@ int	main(void)
 {
 	//unsigned int	nbr = -1;
 
-	printf("%d\n\n", ft_printf("%p\n", ""));
+	printf("%d\n\n", ft_printf("Hello%"));
 	printf("%d\n", printf("%p\n", ""));
 	return (0);
 } */
