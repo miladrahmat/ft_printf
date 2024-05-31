@@ -1,5 +1,12 @@
 # ft_printf
-***My own implementation of the libc function `printf`***
+
+<p align="center">
+  <img src="https://github.com/miladrahmat/42-badges/blob/master/badges/ft_printfe.png"><img width="128" alt="Screen Shot 2024-05-31 at 10 27 07 AM" src="https://github.com/miladrahmat/ft_printf/assets/159012803/eadb1e03-ede6-4351-af75-a322126f3ba7">
+
+</p>
+<p align="center">
+ My own implementation of the libc function printf
+</p>
 
 ## Content
 
