@@ -5,7 +5,7 @@
 
 </p>
 <p align="center">
- My own implementation of the libc function printf
+ <b>My own implementation of the libc function printf()</b>
 </p>
 
 ## Content
